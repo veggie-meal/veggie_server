@@ -1,12 +1,13 @@
+// import dotenv from "dotenv";
+// import path from "path";
+// import os from "os";
 
-
-import dotenv from "dotenv";
-import path from "path";
-import os from "os";
+const dotenv = require('dotenv');
+const path = require('path');
+const os = require('os');
 
 process.env.ROOT_PATH = path.join(__dirname,"..");
-
-const envFound = dotenv.config();
+dotenv.config({ path: path.join(__dirname, '.env.db.dv') });
 
 class Config {
     constructor(){
@@ -22,4 +23,4 @@ class Config {
     
 }
 
-export default new Config();
+module.exports = new Config();
