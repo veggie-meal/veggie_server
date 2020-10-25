@@ -3,10 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require("cors");
 
 var indexRouter = require('../routes/api/index');
 
 var app = express();
+
+//CORS 허용.
+app.use(cors());
 
 // view engine setup //todo change to reactJS
 app.set('views', path.join(__dirname, 'views'));
