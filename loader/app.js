@@ -26,6 +26,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+//db connection test
+var db = require('./db');
+db((conn) => {
+  conn.query("show tables", (err, result) => {
+    conn.release(); // 연결세션 반환.
+    if (err) {
+      console.log(err)
+      throw err;
+    }
+
+    console.log("connect success! : ", result);
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
