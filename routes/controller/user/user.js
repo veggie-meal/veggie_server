@@ -12,7 +12,7 @@ class User {
         let data = req.body;
 
     
-
+        console.log(data);
 
         kakao(data.userAT,(result, resultObj)=>{
             if(!result){
@@ -46,6 +46,22 @@ class User {
         })
     };
 
+
+    /*
+
+        목표 입력 함수
+
+    */
+    goal(req,res){
+
+        console.log("insert user goal")
+
+        let data = req.body;
+
+        userService.inserUserGoal(data.goal,(result,userObj)=>{
+
+        })
+    }
 
 }
 

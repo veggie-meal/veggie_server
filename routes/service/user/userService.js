@@ -22,4 +22,20 @@ exports.findUserId = (userId,next) =>{
 };
 
 
+exports.inserUserGoal = (userId,next) =>{
+    db((conn)=>{
+
+        conn.query(" "+
+           " SELECT * "+
+           " FROM user " +
+           " WHERE id = "+escape(userId),(err, result)=>{
+               if(err)
+               next(null,null);
+
+               next(true, result);
+               conn.release();
+           })
+    })
+};
+
 
