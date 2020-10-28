@@ -6,14 +6,7 @@ class User {
 
 
     login(req,res){
-
-        console.log("reach")
-
         let data = req.body;
-
-    
-        console.log(data);
-
         kakao(data.userAT,(result, resultObj)=>{
             if(!result){
 
