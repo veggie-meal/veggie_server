@@ -13,15 +13,12 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-<<<<<<< HEAD
 var port = normalizePort(process.env.PORT || '3001');
-=======
-var port = normalizePort(process.env.PORT || '3000');
 var runScheduler = function(){
   const Scheduler = require("../routes/controller/scheduler/scheduler")
   Scheduler.runScheduler();
 }
->>>>>>> 4f19b6029b9aa5f20f58371d4cd31629faa357e1
+
 app.set('port', port);
 
 /**
