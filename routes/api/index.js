@@ -5,7 +5,7 @@ var sample = require("../controller/sample");
 var user = require("./user");
 var diet = require("./diet");
 var calander = require("./calander");
-var veggie =require("veggie");
+var veggie =require("./veggie");
 
 /* GET home page. */
 router.get('/', sample.start);
