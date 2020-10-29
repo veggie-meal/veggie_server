@@ -6,6 +6,7 @@ class User {
 
 
     login(req,res){
+        console.log("login");
         let data = req.body;
         kakao(data.userAT,(result, resultObj)=>{
             if(!result){
@@ -46,14 +47,13 @@ class User {
 
     */
     goal(req,res){
-
-        console.log("insert user goal")
+        console.log("update user goal");
 
         let data = req.body;
-
-        userService.inserUserGoal(data.goal,(result,userObj)=>{
-
-        })
+        userService.updateUserGoal(data, (resultJson)=>{
+            console.log(data);
+            return res.json(resultJson);
+        });
     }
 
 }
