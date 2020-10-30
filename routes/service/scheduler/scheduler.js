@@ -50,7 +50,7 @@ exports.selectVeganRole = (next) =>{
 
 exports.insertVeggieHist = (idList,veggie_id, next) =>{
 
-    let insertQuery = idList.map(result => "("+escape(result)+", NOW(), "+escape(veggie_id) +" )")
+    let insertQuery = idList.map(result => "("+escape(result.id)+", NOW(), "+escape(veggie_id) +" )")
     db((conn)=>{
 
         conn.query(" "+
