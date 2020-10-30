@@ -5,6 +5,7 @@ const userController = require("../../controller/user/user");
 
 
 router.post('/login',userController.login);
+router.post('/user',userController.user);
 router.post('/goal',userController.goal);
 router.post('/data',userController.userData);
 
