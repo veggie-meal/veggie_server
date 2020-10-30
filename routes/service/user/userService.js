@@ -23,6 +23,20 @@ exports.findUserId = (userId,next) =>{
     })
 };
 
+exports.addUser = (data, next) =>{
+    const query = `
+        INSERT INTO user (
+            id, pass_word, user_name, vegan_type
+        ) VALUES(
+            ?, ?, ?, ?
+        )
+    `;
+    console.log(data);
+    const queryData = [data.userId, data.pass_word, data.user_name, data.vegan_type];
+
+    QueryHelper.query_send(query, queryData, next);
+};
+
 
 exports.updateUserGoal = (data, next) =>{
     const query = `

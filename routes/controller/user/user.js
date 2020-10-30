@@ -40,6 +40,21 @@ class User {
         })
     };
 
+    /*
+
+        목표 입력 함수
+
+    */
+    user(req,res){
+        console.log("add user");
+
+        let data = req.body;
+        userService.addUser(data, (resultJson)=>{
+            console.log(data);
+            return res.json(resultJson);
+        });
+    }
+
 
     /*
 
