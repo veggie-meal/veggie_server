@@ -24,6 +24,43 @@ exports.findDietLog = (userId, wrt_time, next) =>{
 };
 
 exports.addDietHist = (data, next) =>{
+    let arr = (data.food).split(",");
+    let vegan_type = "";
+    //'MILK','EGG','FISH','CHICKEN','MEAT' >> 채소 빼고 다 안먹음. (VEGAN)
+    if(arr.includes("MILK")&&arr.includes("EGG")&&
+        arr.includes("FISH")&&arr.includes("CHICKEN")&&arr.includes("MEAT")){
+            vegan_type = "VEGAN";
+        }
+
+    //'EGG','FISH','CHICKEN','MEAT' >> 채소, 우유 빼고 다 안먹음. (LACTO)
+    else if(arr.includes("EGG")&&arr.includes("FISH")&&arr.includes("CHICKEN")&&arr.includes("MEAT")){
+        vegan_type = "LACTO";
+    }
+
+    //'MILK','FISH','CHICKEN','MEAT' >> 채소, 달걀 빼고 다 안먹음. (OVO)
+    else if(arr.includes("MILK")&&arr.includes("FISH")&&arr.includes("CHICKEN")&&arr.includes("MEAT")){
+        vegan_type = "OVO";
+    }
+
+    //'FISH','CHICKEN','MEAT' >> 채소, 달걀, 우유 빼고 다 안먹음. (LACTO-OVO)
+    else if(arr.includes("FISH")&&arr.includes("CHICKEN")&&arr.includes("MEAT")){
+        vegan_type = "LACTO-OVO";
+    }
+
+    //'CHICKEN','MEAT' >> 채소, 달걀, 우유, 생선 빼고 다 안먹음. (LACTO-OVO)
+    else if(arr.includes("CHICKEN")&&arr.includes("MEAT")){
+        vegan_type = "PESCO";
+    }
+
+    //'MEAT' >> 채소, 달걀, 우유, 생선, 치킨 빼고 다 안먹음. (POLLO)
+    else if(arr.includes("MEAT")){
+        vegan_type = "POLLO";
+    }
+    
+    else{
+        vegan_type = "FLEXITARIAN";
+    }
+
     const query = `
         INSERT INTO diet_hist (
             food, vegan_type, id, wrt_time
@@ -32,7 +69,7 @@ exports.addDietHist = (data, next) =>{
         )
     `;
     
-    const queryData = [data.food, data.vegan_type, data.userId, data.wrt_time];
+    const queryData = [data.food, vegan_type, data.userId, data.wrt_time];
 
     QueryHelper.query_send(query, queryData, next);
 };
